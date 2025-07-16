@@ -7,6 +7,8 @@ import {
     useLocation,
 } from "react-router-dom";
 
+import { LangRedirector } from "@/components";
+
 import {
     ArticleAr,
     ArticleCss,
@@ -35,8 +37,8 @@ function App() {
 
             <Routes>
                 <Route path="/">
+                <Route path="/:lang/*" element={<LangRedirector />}>
                     <Route index element={<Home />} />
-
                     <Route path="article">
                         <Route path="rtl-icons" element={<ArticleRtlIcons />} />
                         <Route path="css" element={<ArticleCss />} />
@@ -48,6 +50,7 @@ function App() {
                     </Route>
 
                     <Route path="*" element={<Navigate to="/" replace />} />
+                </Route>
                 </Route>
             </Routes>
         </BrowserRouter>

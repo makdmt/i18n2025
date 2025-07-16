@@ -1,0 +1,1 @@
+export { LangRedirector } from "./LangRedirector.tsx";

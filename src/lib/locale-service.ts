@@ -11,7 +11,7 @@ export class LocaleService {
     requestedLocale: string;
     queryString: string;
 
-    constructor(bcpTag: string, queryString: string) {
+    constructor(bcpTag: string | undefined, queryString: string) {
         this.queryString = queryString;
         if (this.isValidBcpTag(bcpTag)) {
             this.requestedLocale = bcpTag;
@@ -23,12 +23,6 @@ export class LocaleService {
             if (!savedLocale) savedLocale = this.getDefaultLocale();
             this.requestedLocale = savedLocale;
         }
-    }
-
-    setBestSupportedLocale() {
-        const locale = this.findBestSupportedLocale();
-        this.setBcpTagToLocalStorage(locale);
-        return locale;
     }
 
     isValidBcpTag(bcpTag: unknown): bcpTag is string {
@@ -49,11 +43,14 @@ export class LocaleService {
         return locale.language;
     }
 
+    getLangFromBcpTag(bcpTag: string) {
+        return this.getLangFromIntlLocale(this.getIntlLocaleFromBcpTag(bcpTag));
+    }
+
     isLangValidAndSupported(bcpTag: unknown): bcpTag is Lang {
         if (!this.isValidBcpTag(bcpTag)) return false;
-        const locale = this.getIntlLocaleFromBcpTag(bcpTag);
-        const validatedLang = this.getLangFromIntlLocale(locale);
-        return (SUPPORTED_LANGS as readonly string[]).includes(validatedLang);
+        const lang = this.getLangFromBcpTag(bcpTag);
+        return (SUPPORTED_LANGS as readonly string[]).includes(lang);
     }
 
     getCookieBcpTag() {
@@ -73,7 +70,8 @@ export class LocaleService {
         if (!this.isLangValidAndSupported(requestedLocale)) requestedLocale = this.getCookieBcpTag();
         if (!this.isLangValidAndSupported(requestedLocale)) requestedLocale = this.getBrowserBcpTag();
         if (!this.isLangValidAndSupported(requestedLocale)) requestedLocale = this.getDefaultLang();
-        return requestedLocale as Lang;
+        const lang = this.getLangFromBcpTag(requestedLocale);
+        return lang as Lang;
     }
 
     getLocalStorageBcpTag() {

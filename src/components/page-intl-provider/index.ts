@@ -1,0 +1,1 @@
+export { PageIntlProvider } from "./PageIntlProvider.tsx";

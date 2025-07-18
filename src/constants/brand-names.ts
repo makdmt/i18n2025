@@ -1,4 +1,4 @@
-import type { Locale } from "@/types";
+import type { Locale } from "../types/index.js";
 
 export const BRAND_NAMES: Record<Locale, string> = {
     ru: "Альт",

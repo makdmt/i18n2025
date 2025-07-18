@@ -1,8 +1,8 @@
-import type { Lang, Locale } from "@/types";
+import type { Lang, Locale } from "../types/index.js";
 
-export { BRAND_NAMES } from "./brand-names";
-export { LANG_COOKIE_NAME } from "./lang-cookie-name";
-export { LANG_DIRECTION } from "./lang-direction";
+export { BRAND_NAMES } from "./brand-names.js";
+export { LANG_COOKIE_NAME } from "./lang-cookie-name.js";
+export { LANG_DIRECTION } from "./lang-direction.js";
 
 export const SUPPORTED_LANGS = ["ru", "en", "ar"] as const;
 

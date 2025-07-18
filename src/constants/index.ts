@@ -1,4 +1,4 @@
-import type { Lang, Locale } from "@/types";
+import type { Lang, Locale } from "../types";
 
 export { BRAND_NAMES } from "./brand-names";
 export { LANG_COOKIE_NAME } from "./lang-cookie-name";

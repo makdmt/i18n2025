@@ -1,3 +1,4 @@
+import { type MessageFormatElement,parse } from '@formatjs/icu-messageformat-parser'
 import fs from 'fs';
 import path from 'path';
 import type { Plugin } from 'vite';
@@ -27,13 +28,13 @@ export function splitTranslationsByPagesPlugin(): Plugin {
 
             for (const [page, keys] of Object.entries(pageKeys)) {
                 for (const locale of locales) {
-                    const pageTranslations: Record<string, string> = {};
+                    const pageTranslations: Record<string, MessageFormatElement[]> = {};
 
                     for (const key of keys) {
                         //@ts-expect-error index error
                         const value = translations[key]?.[locale];
                         if (value) {
-                            pageTranslations[key] = value;
+                            pageTranslations[key] = parse(value);
                         }
                     }
 

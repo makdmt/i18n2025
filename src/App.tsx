@@ -36,8 +36,8 @@ function App() {
             <ScrollToTop />
 
             <Routes>
-                <Route path="/">
-                <Route path="/:lang/*" element={<LangRedirector />}>
+                <Route path="/" element={<Navigate to="lang" replace />} />
+                <Route path="/:lang/*" element={<LangRedirector />} >
                     <Route index element={<Home />} />
                     <Route path="article">
                         <Route path="rtl-icons" element={<ArticleRtlIcons />} />
@@ -50,7 +50,6 @@ function App() {
                     </Route>
 
                     <Route path="*" element={<Navigate to="/" replace />} />
-                </Route>
                 </Route>
             </Routes>
         </BrowserRouter>

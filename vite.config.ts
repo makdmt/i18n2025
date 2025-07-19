@@ -20,7 +20,20 @@ export default defineConfig({
             }],
     },
     plugins: [
-        react(),
+        react({
+            babel: {
+                plugins: [
+                    [
+                        "formatjs",
+                        {
+                            "idInterpolationPattern": "[sha512:contenthash:base64:6]",
+                            "removeDefaultMessage": true,
+                            "ast": true
+                        }
+                    ]
+                ]
+            }
+        }),
         svgr({
             include: "**/*.svg",
         }),

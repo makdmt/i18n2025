@@ -1,32 +1,36 @@
 
-import { type FC,useEffect, useState } from 'react';
+import { type FC, useEffect, useState } from 'react';
 import { IntlProvider } from 'react-intl';
-import {Outlet} from "react-router-dom";
 
+import { useLocale } from '@/hooks/useLocale';
+
+import { Loader } from '../loader';
+
+async function loadPageTranslates(locale: string, page: string): Promise<Record<string, string>> {
+    try {
+        const messages = await import(`@/translations/locales/${locale}/${page}.json`);
+        return messages.default;
+    } catch {
+        console.warn(`No translates found for locale "${locale}" and page "${page}"`);
+        return {};
+    }
+}
 interface Props {
-    locale: string;
-    page: string;
+    pageName: string;
     children: React.ReactNode;
 }
 
-export const PageIntlProvider: FC = ({ locale, page, children }: Props) => {
+export const PageIntlProvider: FC<Props> = ({ pageName, children }) => {
+
+    const { lang, locale } = useLocale();
     const [messages, setMessages] = useState<Record<string, string> | null>(null);
 
     useEffect(() => {
-        loadMessages(locale, page).then(setMessages);
-    }, [locale, page]);
+        loadPageTranslates(lang, pageName).then(setMessages);
+    }, [lang, locale, pageName]);
 
-    async function loadMessages(locale: string, page: string): Promise<Record<string, string>> {
-        try {
-            const messages = await import(`../locales/${locale}/${page}.json`);
-            return messages.default;
-        } catch (e) {
-            console.warn(`No messages found for locale "${locale}" and page "${page}"`);
-            return {};
-        }
-    }
 
-    if (!messages) return <Outlet/>; // можно показать спиннер
+    if (!messages) return <Loader />
 
     return (
         <IntlProvider locale={locale} messages={messages}>
@@ -35,4 +39,3 @@ export const PageIntlProvider: FC = ({ locale, page, children }: Props) => {
     );
 
 }
-

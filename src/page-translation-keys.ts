@@ -69,4 +69,5 @@ export const PAGE_TRANSLATION_KEYS = {
         "articleRtlIcons.conclusion.text1",
         "articleRtlIcons.conclusion.text2",
     ],
+    layout: ["layout.footer.copyright"]
 };

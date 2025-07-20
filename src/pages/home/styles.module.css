@@ -81,7 +81,7 @@
     display: flex;
     gap: 36px;
 
-    margin-left: 36px;
+    margin-inline-start: 36px;
     padding: 20px;
     border-radius: 16px;
 

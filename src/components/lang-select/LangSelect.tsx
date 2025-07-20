@@ -1,7 +1,8 @@
-import { type FC, useCallback, useState } from "react";
-import { Link } from "react-router-dom";
+import { type FC, useCallback, useLayoutEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
-import { SUPPORTED_LANGS } from "@/constants";
+import { DEFAULT_LANG, SUPPORTED_LANGS } from "@/constants";
+import { useLocale } from "@/hooks/useLocale";
 import { DoneIcon, EarthIcon } from "@/icons";
 import type { Lang } from "@/types";
 
@@ -27,7 +28,16 @@ export const LangSelect: FC = () => {
 
     const langSelectRef = useClickOutside<HTMLDivElement>(handleMenuClose);
 
-    const selectedLang = "ru" as Lang;
+    const [selectedLang, setSelectedLang] = useState(DEFAULT_LANG);
+    const { lang } = useLocale();
+
+    useLayoutEffect(() => {
+        setSelectedLang(lang);
+    })
+
+    const location = useLocation();
+    const pathSegments = location.pathname.split('/').filter(Boolean);
+    const pathWoutLang = pathSegments.slice(1).join('/')
 
     return (
         <div className={styles.langSelect} ref={langSelectRef}>
@@ -52,7 +62,7 @@ export const LangSelect: FC = () => {
                         const langName = LANG_LABEL[lang];
 
                         return (
-                            <Link to="">
+                            <Link to={`/${lang}/${pathWoutLang}${location.search}${location.hash}`} key={lang}>
                                 <li
                                     className={styles.langSelectMenuItem}
                                     key={lang}

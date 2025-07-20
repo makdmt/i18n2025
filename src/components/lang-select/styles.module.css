@@ -33,7 +33,7 @@
     position: absolute;
     z-index: 1;
     top: 110%;
-    right: -20px;
+    inset-inline-end: -20px;
 
     width: 240px;
     padding: 16px 0;

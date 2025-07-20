@@ -17,3 +17,7 @@
     align-items: center;
     justify-content: center;
 }
+
+[dir="rtl"] .iconsRtl {
+    transform: scaleX(-1);
+}

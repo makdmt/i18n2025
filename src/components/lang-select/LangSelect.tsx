@@ -33,7 +33,7 @@ export const LangSelect: FC = () => {
 
     useLayoutEffect(() => {
         setSelectedLang(lang);
-    })
+    },[lang])
 
     const location = useLocation();
     const pathSegments = location.pathname.split('/').filter(Boolean);

@@ -1,7 +1,9 @@
 import { type FC, useEffect } from "react";
 import { Navigate, Outlet, useLocation, useParams } from "react-router-dom";
 
+import { BRAND_NAMES } from "@/constants";
 import { LocaleService } from "@/lib/locale-service.ts";
+import type { Lang } from "@/types";
 
 export const LangRedirector: FC = () => {
 
@@ -13,10 +15,12 @@ export const LangRedirector: FC = () => {
 
     useEffect(() => {
         const htmlElement = document.documentElement;
-        const assignedLang = new Intl.Locale(bestSupportedLocale).language;
+        const assignedLang = new Intl.Locale(bestSupportedLocale).language as Lang;
 
         htmlElement.setAttribute('lang', assignedLang);
         htmlElement.setAttribute('dir', assignedLang === 'ar' ? 'rtl' : 'ltr');
+        document.title = BRAND_NAMES[assignedLang];
+
     }, [bestSupportedLocale]);
 
 

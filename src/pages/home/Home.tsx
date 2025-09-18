@@ -136,10 +136,10 @@ export const Home: FC = () => {
                                     description="стоимость билета"
                                     values={{
                                         price: <FormattedNumber
-                                            value={35000}
+                                            value={3500}
                                             style="currency"
                                             currency="RUB"
-                                            minimumFractionDigits={2}
+                                            minimumFractionDigits={0}
                                             maximumFractionDigits={2}
                                         />
                                     }}

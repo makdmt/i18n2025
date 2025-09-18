@@ -5,6 +5,25 @@
     max-width: 928px;
 }
 
+@media only screen and (max-width: 575px) {
+    .article h1 {
+        font-size: 24px;
+    }
+
+    .article h2 {
+        font-size: 20px;
+    }
+
+    .icons svg {
+        width: 100px;
+        height: 100px;
+    }
+
+    div.icons {
+        gap: 28px;
+    }
+}
+
 .section {
     display: flex;
     flex-direction: column;

@@ -4,3 +4,8 @@
     gap: 36px;
     max-width: 928px;
 }
+@media only screen and (max-width: 575px) {
+    .article h1 {
+        font-size: 24px;
+    }
+}

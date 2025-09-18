@@ -1,0 +1,1 @@
+const e={"layout.footer.copyright":[{type:0,value:"© "},{type:1,value:"yearStart"},{type:0,value:"-"},{type:1,value:"yearEnd"},{type:0,value:", شركة ذات مسؤولية محدودة «"},{type:8,value:"link",children:[{type:1,value:"brand"}]},{type:0,value:"». جميع الحقوق محفوظة"}]};export{e as default};

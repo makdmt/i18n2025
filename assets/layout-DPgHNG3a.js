@@ -1,0 +1,1 @@
+const e={"layout.footer.copyright":[{type:0,value:"© "},{type:1,value:"yearStart"},{type:0,value:"-"},{type:1,value:"yearEnd"},{type:0,value:", ООО «"},{type:8,value:"link",children:[{type:1,value:"brand"}]},{type:0,value:"». Все права защищены"}]};export{e as default};

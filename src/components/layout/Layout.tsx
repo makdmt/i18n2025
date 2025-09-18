@@ -10,6 +10,7 @@ import { PAGE_TRANSLATION_KEYS } from "@/page-translation-keys";
 import { LangSelect } from "../lang-select";
 import { PageIntlProvider } from "../page-intl-provider";
 import styles from "./styles.module.css";
+import {COMPANY_NAMES} from "@/constants/brand-names.ts";
 
 const PAGE_NAME: keyof typeof PAGE_TRANSLATION_KEYS = 'layout';
 
@@ -55,7 +56,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
                                 yearStart: <FormattedDate value={new Date('2024')} year='numeric' />,
                                 yearEnd: <FormattedDate value={new Date('2025')} year='numeric' />,
                                 link: chunks => <a className={styles.textLink} href="">{chunks}</a>,
-                                brand: BRAND_NAMES[lang]
+                                brand: COMPANY_NAMES[lang]
                             }}
                         />
                     </PageIntlProvider>
